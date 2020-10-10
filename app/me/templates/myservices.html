@@ -1,0 +1,55 @@
+{% extends 'accounts_layout.html' %}
+
+{{ super() }}
+
+{% block section_content %}
+{{ super() }}
+ <!-- second row with profile display-->
+
+    <!-- basic profile info column-->
+    <div class="row">
+        
+        <br>
+        <div class="col-sm-12 col-lg-12"> 
+            <form class="mt-50 w-100 mx-auto" method = "post" action="">
+                {{ form.hidden_tag() }} 
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputEmail4">{{ form.sector.label}}</label>
+                        {{form.sector(class="form-control")}}
+                   
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputEmail4">{{ form.sector.label}}</label>
+                        {{form.sector(class="form-control")}}
+                   
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputEmail4">{{ form.service.label}}</label>
+                        {{form.service(class="form-control",placeholder = "What do you offer")}}
+                   
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputEmail4">{{ form.service.label}}</label>
+                        {{form.service(class="form-control",placeholder = "What do you offer")}}
+                   
+                      </div>
+                </div>
+                
+                             
+                <div class="form-groups">
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
+    
+
+   
+
+
+{% endblock section_content %}
+{% block add_scripts %}
+
+    <script src="{{url_for('static',filename = 'js/services.js')}}"> </script>
+
+{% endblock add_scripts %}

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block page_body %}
+
+<div class="container">
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="row justify-content-center">
+            <div class="col">
+                {{ form.what (placeholder ='What are you looking for',class ='form-control justify-right border border-dark')}}
+            </div>
+            <h3>in </h3>
+            <div class="col">
+                {{ form.where(placeholder ='Postcode',class ='form-control justify-right border border-dark')}}
+            </div>
+        </div>
+    </form>
+    <div class="row">
+
+
+        <!-- this is for the filters -->
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
+        </div>
+        <!--this section houses the result of search-->
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+            
+            {% for user in users  %}
+            <hr>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="small">{{ user.user_email }}</h2>
+                </div>
+                <div class="card-body h-25 d-inline-block bg-warning">
+                    <h2 class="small">{{ user.user_bio }}</h2>
+                </div>
+                <div class="card-footer">
+                    <h2 class="small">{{ user.user_work_phone }}</h2>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock page_body %}

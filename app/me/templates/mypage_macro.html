@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{{ super() }}
+
+{% block page_body %}
+
+<!-- place the page in a container-->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <div class="container">
+                <div class="card border border-light border-0">
+                    <div class="card-body p-1">
+                        <h5 class="text-center">Create Profile</h5>
+                        <h6><a class="btn btn-primary btn-block text-white" href="{{ url_for('me.personalinfo', myemail_id = current_user.user_email) }}">Personal Info</a></h6>
+                        <h6><a class="btn btn-success btn-block text-white">Business Info</a></h6>
+                        <h6><a class="btn btn-warning btn-block text-black">Social Media Info</a></h6>
+                    </div>
+                    <hr>
+                    <div class="card-body p-1">
+                        <h5 class="text-center">Analytics</h5>
+                        <h6><a class="btn btn-primary btn-block text-white" href="{{ url_for('me.personalinfo', myemail_id = current_user.user_email) }}">Dashboard</a></h6>
+                        <hr>
+                        <h5 class="text-center">Messages</h5>
+                        <h6><a class="btn btn-primary btn-block text-white" href="{{ url_for('me.personalinfo', myemail_id = current_user.user_email) }}">Inbox</a></h6>
+                        <h6><a class="btn btn-primary btn-block text-white" href="{{ url_for('me.personalinfo', myemail_id = current_user.user_email) }}">Outbox</a></h6>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- this hosts the form to create profile-->
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            {% block content_display %}
+
+            {% endblock content_display %}
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+
+
+
+{% block page_body %}
+{{ super() }}
+
+ <!-- second row with profile display-->
+ <div class="row">
+     <div class="container">
+
+        <ul class="nav nav-tabs ">
+            <li class="nav-item m-3 ">
+                <a href="{{url_for('me.myprofile')}}" class="nav-link active bg-dark text-light">Profile</a>
+            </li>
+            <li class="nav-item  m-3">
+                <a href="{{url_for('me.myaccount') }}" class="nav-link" >Account</a>
+            </li>
+            <li class="nav-item  m-3">
+                <a href="{{url_for('me.myservices') }}" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item  m-3">
+                <a href="{{url_for('me.mymessages') }}" class="nav-link">Messages</a>
+            </li>
+            <li class="nav-item  m-3">
+                <a href="{{url_for('me.myuploads') }}" class="nav-link">Uploads</a>
+            </li>
+        </ul>
+        {% block section_content %}
+
+        {% endblock section_content %}
+
+
+     </div>
+    
+</div>
+
+{% endblock page_body %}
+
+{% block add_scripts %}
+
+    <script src="{{url_for('static',filename = 'js/mypage.js')}}"> </script>
+
+{% endblock add_scripts %}

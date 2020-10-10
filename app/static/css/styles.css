@@ -1,0 +1,30 @@
+
+.home-nav {
+    background:linear-gradient(to right, #33ccff 0%, #00ff99 100%);
+}
+/* login page */
+
+#login_card {
+    box-shadow: 0px 0px 10px 0px #000;
+    border-radius:10px;
+}
+#login_row_1{
+    padding: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: san-seriff;
+    max-height: 100%;
+    max-width:100%;
+
+}
+#login-footer-row-2{
+    padding: 50px;
+    font-family: san-seriff;
+    max-height: 100%;
+    max-width:100%;
+
+}
+
+#mypage-card-header{
+    max-height:250px;
+}

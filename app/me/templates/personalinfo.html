@@ -1,0 +1,67 @@
+{% extends 'mypage_macro.html' %}
+
+{{ super() }}
+
+{% block content_display %}
+<div class="card">
+    <div class="card-body">
+        <h5>Personal Information Here</h5>
+        <hr>
+        <form class="mt-50 " method="post" action="/profilesetting">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group w-75 mx-auto">
+                {{ form.name.label }}
+                {{ form.name(value=current_user.user_name,class ='form-control') }}
+
+            </div>
+
+            <div  class="form-group w-75 mx-auto">
+                {{ form.email.label }}
+                {{ form.email(value=current_user.user_email,class ='form-control') }}
+            </div>
+
+             <div  class="form-group w-75 mx-auto">
+                 <span class="error">
+                    {% if form.mobile_phone.errors %}
+                        {% for error in form.mobile_phone.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    {% endif %}
+                </span>
+                {{ form.mobile_phone.label }}
+                {{ form.mobile_phone(placeholder = '10 digits number',class ='form-control') }}
+            </div>
+            <div  class="form-group w-75 mx-auto">
+                 <span class="error">
+                    {% if form.work_phone.errors %}
+                        {% for error in form.work_phone.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    {% endif %}
+                </span>
+                {{ form.work_phone.label }}
+                {{ form.work_phone(placeholder = '10 digits number',class ='form-control') }}
+            </div>
+
+            <div class="form-group w-75 mx-auto">
+                {{ form.province.label }}
+                {{ form.province(class ='form-control') }}
+
+            </div>
+
+            <div class="form-group w-75 mx-auto">
+                {{ form.city.label }}
+                {{ form.city(class ='form-control') }}
+
+            </div>
+            <div  class="form-group w-75 mx-auto">
+                {{ form.submit(class = 'btn btn-primary mx-auto') }}
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock content_display %}
