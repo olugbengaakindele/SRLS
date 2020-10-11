@@ -1,8 +1,12 @@
+# app/auth/models
+
 from app import db
 from flask_sqlalchemy import SQLAlchemy
+from app.me.models import Services
 from app import bcrypt
 from app import login_manager
 from flask_login import UserMixin
+
 
 from datetime import datetime
 
@@ -16,6 +20,7 @@ class Users(UserMixin, db.Model):
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True, default = datetime.utcnow())
     email_confirmed = db.Column(db.Boolean, nullable=True, default=False)
     email_confirmed_on = db.Column(db.DateTime, nullable=True,default = datetime.utcnow())
+    #service = db.relationship('services', backref = 'user')
 
     def __init__(self, user_name, user_email,user_password):
         self.user_name =user_name 

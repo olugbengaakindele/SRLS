@@ -40,7 +40,7 @@ def create_app(config_type): #test/dev/ prod
     from app.me import me 
     app.register_blueprint(me)
 
-
+ 
     return app
 
 

@@ -52,7 +52,7 @@ def reg_user():
             mail.send(msg)
             return redirect(url_for('auth.home'))
 
-    return render_template('reg.html', form=form)
+    return render_template('reg.html', title = 'Register',form=form)
 
 
 # this url takes in the emil verifiction
@@ -60,7 +60,7 @@ def reg_user():
 @auth.route('/email_verification/<token>')
 def verify_email(token):
     try:
-        email_con = s.loads(token, salt='email_verify', max_age=36000)
+        email_con = s.loads(token, salt='email_verify', max_age=360000)
 
     except SignatureExpired:
         return '<h3>Your token expired</h3>'
@@ -114,7 +114,7 @@ def signin():
             flash("user credentails do not match, please enter email and password correctly")
             return redirect(url_for("auth.sigin"))
 
-    return render_template('signin.html', form=form)
+    return render_template('signin.html', title ='Signin',form=form)
 
 
 @auth.route('/signout')

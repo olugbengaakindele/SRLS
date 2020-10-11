@@ -4,52 +4,49 @@
 
 {% block section_content %}
 {{ super() }}
- <!-- second row with profile display-->
+<!-- second row with profile display-->
 
-    <!-- basic profile info column-->
-    <div class="row">
-        
-        <br>
-        <div class="col-sm-12 col-lg-12"> 
-            <form class="mt-50 w-100 mx-auto" method = "post" action="">
-                {{ form.hidden_tag() }} 
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="inputEmail4">{{ form.sector.label}}</label>
-                        {{form.sector(class="form-control")}}
-                   
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label for="inputEmail4">{{ form.sector.label}}</label>
-                        {{form.sector(class="form-control")}}
-                   
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label for="inputEmail4">{{ form.service.label}}</label>
-                        {{form.service(class="form-control",placeholder = "What do you offer")}}
-                   
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label for="inputEmail4">{{ form.service.label}}</label>
-                        {{form.service(class="form-control",placeholder = "What do you offer")}}
-                   
-                      </div>
-                </div>
-                
-                             
-                <div class="form-groups">
-                    {{ form.submit }}
-                </div>
-            </form>
+<!-- basic profile info column-->
+<div class="row">
+
+    <div class="col-sm-12 col-lg-12">
+        {% for x in service_exist %}
+       
+        <div class="col">{{ x.service}} </div>
+        <div class="col">{{ x.rate}} </div>
+        {% endfor %}
+    </div>
+
+    <form class="mt-50 w-100 mx-auto" id="form-section" method="post" action="">
+        {{ form.hidden_tag() }}
+        <div class="form-row" id="form-rows">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="inputEmail4">{{ form.service.label}}</label>
+                {{form.service(class="form-control")}}
+
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label for="inputEmail">{{ form.rate.label}}</label>
+                {{form.rate(class="form-control")}}
+
+            </div>
+
         </div>
-    
+        <div class="form-group col-xs-12 col-sm-6">
 
-   
+            {{form.submit(class= "btn btn-primary d-block")}}
+
+        </div>
+    </form>
+
+ 
+</div>
+
 
 
 {% endblock section_content %}
 {% block add_scripts %}
 
-    <script src="{{url_for('static',filename = 'js/services.js')}}"> </script>
+<script src="{{url_for('static',filename = 'js/services.js')}}"> </script>
 
 {% endblock add_scripts %}

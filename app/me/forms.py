@@ -63,7 +63,7 @@ def pp_check(filename):
 
 class frmService(FlaskForm):
 
-    sector =SelectField("Sector",  choices=[('a','a')])
-    sub_sector = SelectField("Sub_Sector", choices=[('a','a')])
-    service = StringField("Service")
+    service =SelectField("Service",  choices=[('1','Gardening'),('2','Lawn Mowing'),('3','Snow Removal')])
+    rate = SelectField("Rate", choices=[('a','a')])
+    submit = SubmitField('Save')
 

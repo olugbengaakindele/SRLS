@@ -1,11 +1,11 @@
 # app/me/routes
 
 from app.me import me
-from app.auth.models import Users
+from app.auth.models import *
 from flask import render_template, request, redirect, url_for, flash, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from app.me.forms import frmProfile, frmTest, pp_check, frmProfilePic, frmService
-from app.me.models import Personal_Info
+from app.me.models import Personal_Info,Services
 from app import db
 
 
@@ -66,8 +66,15 @@ def myaccount():
 @login_required
 def myservices():
     frmservice = frmService()
- 
-    return render_template("myservices.html", form =  frmservice)
+    service_exist = Services.query.filter_by(user_id = current_user.id).all()
+    
+    if frmservice.validate_on_submit():
+        service = frmservice.service.data
+        rate   = frmservice.rate.data
+        user_service = Services.AddService(service,rate, current_user.id)
+        return redirect(url_for('me.myservices', frmservice= frmservice))
+
+    return render_template("myservices.html", title="Services",  service_exist =  service_exist ,form =  frmservice)
 
 @me.route("/account/messages",methods=["GET","POST"])
 @login_required

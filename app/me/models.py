@@ -1,9 +1,12 @@
+# app/me/models
+
 from app import db
 from flask_sqlalchemy import SQLAlchemy
+from app.auth import models
 from app import bcrypt
 from app import login_manager
 from datetime import datetime
-from app.auth.models import *
+
 
 class Personal_Info(db.Model):
     __tablename__ = 'personal_info'
@@ -64,16 +67,18 @@ class Services(db.Model):
     __tablename__ = 'services'
 
     id = db.Column(db.Integer, primary_key = True)
-    sector  = db.Column(db.String(100), nullable = False)
-    sub_sector = db.Column(db.String(100), nullable = False)
+    service  = db.Column(db.String(100), nullable = False)
+    rate = db.Column(db.String(100), nullable = False)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
 
-    def __init__(self, sector, sub_sector):
-        self.sector = sector
-        self.sub_sector = sub_sector
+    def __init__(self, service, rate, user_id):
+        self.service = service
+        self.rate= rate
+        self.user_id = user_id
 
     @classmethod
-    def AddService(cls,sector,sub_sector):
-        service = cls(sector = sector, sub_sector= sub_sector)
+    def AddService(cls,service,rate, user_id):
+        service = cls(service = service, rate= rate, user_id = user_id)
         db.session.add(service)
         db.session.commit()
         
