@@ -25,21 +25,21 @@
                             </div>
                             <div class="form-group">
                                 {{ frmContact.work_phone.label }}
-                                {{ frmContact.work_phone (placeholder ='Work Number',class ='w-100 m-auto')}}
+                                {{ frmContact.work_phone (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_work_phone)}}
                             </div>
                             <div class="form-group">
                                 {{ frmContact.postcode.label }}
-                                {{ frmContact.postcode (placeholder ='Work Number',class ='w-100 m-auto')}}
+                                {{ frmContact.postcode (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_postcode)}}
+                            </div>
+                              
+                            <div class="form-group">
+                                {{ frmContact.city.label }}
+                                {{ frmContact.city (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_city)}}
                             </div>
                             <div class="form-group">
                                 {{ frmContact.country.label }}
-                                {{ frmContact.country (placeholder ='Work Number',class ='w-100 m-auto')}}
-                            </div>    
-                            <div class="form-group">
-                                {{ frmContact.city.label }}
-                                {{ frmContact.city (placeholder ='Work Number',class ='w-100 m-auto')}}
-                            </div>
-                           
+                                {{ frmContact.country (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_country)}}
+                            </div>  
                     </div>
                     <div class="modal-footer">
                         <div class="form-groups">
@@ -83,33 +83,36 @@
     <div class="col-xs-12 col-lg-9">
         <!--login details-->
         <div class="row">
-            <div class="col-xs-12">
-                <h3 class="mt-5 ml-5">Login Details</h3>
-                <hr class="d-block">
+            <div class="col-lg-12">
+                <h3 class="mt-5">Login Details<span class="float-right in-line ml-2"><a href=""
+                    data-toggle="modal" data-target="#frmlogin"><i class="fas fa-pencil-alt"></i></a></span></h3>
+            
             </div>
         </div>
+        <hr class="d-block">
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <h6>Login Email: </h6>
-                <h6>{{ current_user.user_email }}</h3>
+                <h6 class= 'text-muted'>{{ current_user.user_email }}</h3>
             </div>
             <div class="col-xs-12 col-md-4">
                 <h6>Login Password: </h6>
-                <h6>**********</h3>
+                <h6 class= 'text-muted'>**********</h3>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <h6>Display Name: </h6>
-                <h6>{{current_user.user_name}}</h3>
+                <h6 class= 'text-muted'>{{current_user.user_name}}</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <h3 class="mt-5 ml-5">Contact Details<span class="float-right in-line ml-2"><a href=""
+            <div class="col-lg-12">
+                <h3 class="mt-5">Contact Details<span class="float-right in-line ml-2"><a href=""
                             data-toggle="modal" data-target="#frmContact"><i class="fas fa-pencil-alt"></i></a></span>
                 </h3>
-                <hr>
+               
             </div>
         </div>
+        <hr class="d-block">
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <h6>Mobile Number: </h6>
@@ -117,7 +120,7 @@
                     {% if not current_user.profile.user_mobile_phone   %}
                     ---
                     {% else %}
-                    {{ current_user.profile.user_mobile_phone }}
+                    <h6 class= 'text-muted'>{{ current_user.profile.user_mobile_phone }}</h6>
                     {% endif %}
                     </h3>
             </div>
@@ -126,7 +129,7 @@
                 <h6>{% if not current_user.profile.user_work_phone   %}
                     ---
                     {% else %}
-                    {{ current_user.profile.user_work_phone }}
+                    <h6 class= 'text-muted'>{{ current_user.profile.user_work_phone }}</h6>    
                     {% endif %}</h3>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4">
@@ -134,7 +137,7 @@
                 <h6>{% if not current_user.profile.user_postcode %}
                     ---
                     {% else %}
-                    {{ current_user.profile.user_postcode}}
+                    <h6 class= 'text-muted'>{{ current_user.profile.user_postcode}}</h6>
                     {% endif %}</h3>
             </div>
         </div>
@@ -144,7 +147,7 @@
                 <h6>{% if not current_user.profile.user_city %}
                     ---
                     {% else %}
-                    {{ current_user.profile.user_city }}
+                    <h6 class= 'text-muted'>{{ current_user.profile.user_city }}</h6>
                     {% endif %}</h3>
             </div>
             <div class="col-xs-12 col-md-4">
@@ -152,7 +155,7 @@
                 <h6>{% if not current_user.profile.user_country %}
                     ---
                     {% else %}
-                    {{ current_user.profile.user_country}}
+                    <h6 class= 'text-muted'>{{ current_user.profile.user_country}}</h6>    
                     {% endif %}</h3>
             </div>
 
@@ -160,11 +163,13 @@
 
 
         <div class="row">
-            <div class="col-xs-12">
-                <h3 class="mt-5 ml-5">Web Presence</h3>
-                <hr>
+            <div class="col-lg-12">
+                <h3 class="mt-5">Web Presence<span class="float-right in-line ml-2"><a href=""
+                    data-toggle="modal" data-target="#frmlogin"><i class="fas fa-pencil-alt"></i></a></span></h3>
+                
             </div>
         </div>
+        <hr class="d-block">
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <h6>Wesite: </h6>
