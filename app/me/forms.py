@@ -25,6 +25,14 @@ class frmProfile(FlaskForm):
     bio = TextAreaField('Bio')
     submit = SubmitField('Update')
 
+class frmContact(FlaskForm):
+    mobile_phone = StringField('Mobile Number', validators=[DataRequired()])
+    work_phone = StringField('Work Number', validators=[DataRequired()])
+    country = SelectField('Country', choices=[('1', 'Canada'), ('2', 'UK'), ('3', 'USA')])
+    postcode = StringField('Postcode', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    submit = SubmitField('Update')
+
 class frmTest(FlaskForm):
     name=StringField('Name')
     email=StringField("Email",validators=[DataRequired(), Email()])

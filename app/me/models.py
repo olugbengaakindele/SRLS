@@ -22,11 +22,11 @@ class Personal_Info(db.Model):
     user_bio = db.Column(db.String(1000))
     user_url = db.Column(db.String(1000))
     user_twitter=db.Column(db.String(1000))
-    user_company = db.Column(db.String(1000))
+    user_facebook = db.Column(db.String(1000))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
 
-    def __init__(self, user_name,user_email, user_mobile_phone, user_work_phone, user_postcode, user_city,user_country,user_bio,user_url,user_twitter,user_company, user_id ):
+    def __init__(self, user_name,user_email, user_mobile_phone, user_work_phone, user_postcode, user_city,user_country,user_bio,user_url,user_twitter,user_facebook, user_id ):
         self.user_name = user_name
         self.user_email = user_email
         self.user_mobile_phone = user_mobile_phone
@@ -37,7 +37,7 @@ class Personal_Info(db.Model):
         self.user_bio = user_bio
         self.user_url= user_url
         self.user_twitter = user_twitter
-        self.user_company = user_company
+        self.user_facebook = user_facebook
         self.user_id= user_id
 
     def __repr__(self):
