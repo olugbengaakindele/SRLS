@@ -1,8 +1,11 @@
+#app/me/forms
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, PasswordField, BooleanField, TextField, TextAreaField, FileField
-from wtforms.validators import Email, DataRequired, EqualTo, ValidationError
+from wtforms.validators import Email, DataRequired, EqualTo, ValidationError,InputRequired
 from wtforms.fields import html5 as h5fields
 from wtforms.widgets import html5 as h5widgets
+
 import os
 
 def num_validate(form, field):
@@ -31,7 +34,7 @@ class frmContact(FlaskForm):
     country = SelectField('Country', choices=[('1', 'Canada'), ('2', 'UK'), ('3', 'USA')])
     postcode = StringField('Postcode', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])
-    submit = SubmitField('Update')
+    submit = SubmitField('Save')
 
 class frmTest(FlaskForm):
     name=StringField('Name')
@@ -43,6 +46,16 @@ class frmTest(FlaskForm):
     city = StringField('City', validators=[DataRequired()])
     province = StringField('Province')
     bio = TextAreaField('Bio') 
+    submit= SubmitField("Save")
+
+class frmWeb(FlaskForm):
+    twitter = StringField("Twitter")
+    url = StringField('Website',validators=[DataRequired()])
+    facebook = StringField('Facebook', validators=[DataRequired()])
+    submit= SubmitField("Save")
+
+class frmAboutMe(FlaskForm):
+    profile_summary = TextAreaField('Profile Summary') 
     submit= SubmitField("Save")
 
 class frmProfilePic(FlaskForm):
