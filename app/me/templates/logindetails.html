@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{{ super() }}
+{% block page_body %}
+{{ super() }}
+<!-- second row with profile display-->
+<!--form Pasword chnage-->
+
+                        <form class="mt-50 w-75 mx-auto" method = "post" action="#">
+                            {{ frmChangePass.hidden_tag() }} 
+                            <span class="error">
+                                {% if frmChangePass.current_password.errors %}
+                                    {% for error in frmChangePass.current_password.errors %}
+                                        <h6 class="text-danger">{{ error }}</h6>
+                                    {% endfor %}
+                                {% endif %}  
+                            </span>
+                               
+                            <div class="form-group">
+                                
+                                
+                                {{ frmChangePass.current_password.label }}
+                                {{ frmChangePass.current_password (placeholder ='******',class ='w-100 m-auto') }}
+                            </div>
+                            <span class="error">
+                                {% if frmChangePass.new_password.errors %}
+                                    {% for error in frmChangePass.new_password.errors %}
+                                        <h6 class="text-danger">{{ error }}</h6>
+                                    {% endfor %}
+                                {% endif %}  
+                            </span>
+                            <div class="form-group">
+                                {{ frmChangePass.new_password.label }}
+                                {{ frmChangePass.new_password (placeholder ='*******',class ='w-100 m-auto')}}
+                            </div>
+                            <div class="form-group">
+                                {{ frmChangePass.confirm_password.label }}
+                                {{ frmChangePass.confirm_password (placeholder ='*******',class ='w-100 m-auto')}}
+                            </div>
+                        
+                            <div class="modal-footer">
+                                <div class="form-groups">
+                                    {{ frmChangePass.submit (class="btn btn-primary float-left")}}
+                                </div> 
+                                <a href="{{ url_for('me.myprofile')}}" class="visible"><button id="btn-edit-myprofile" type="button"
+                                    class="btn btn-info d-sm-block justify-content-center">Close
+                                </button></a>
+                            </div>    
+                        </form>  
+
+{% endblock page_body %}

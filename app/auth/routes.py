@@ -4,13 +4,13 @@ from app.auth import auth
 import os
 from flask import render_template, url_for, redirect, request, flash
 from app.auth.forms import RegForm, LoginForm, DeleteForm, SearchForm
-from app.auth.models import Users
+from app.auth.models import Users,Personal_Info
 from flask_login import login_user, logout_user, login_required
 from app import bcrypt, db
 from app import Message, mail, SECRET_KEY_2
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadTimeSignature
 from datetime import datetime
-from app.me.models import Personal_Info
+
 
 s = URLSafeTimedSerializer(os.urandom(32))
 

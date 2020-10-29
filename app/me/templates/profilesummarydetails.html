@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{{ super() }}
+{% block page_body %}
+{{ super() }}
+<!-- second row with profile display-->
+<!--form Pasword chnage-->
+
+
+<form class="mt-50 w-75 mx-auto" method="post" action="">
+    {{ frmbio.hidden_tag() }}
+
+    <div class="form-group">
+        {{ frmbio.profile_summary.label }}
+
+        <textarea class="w-100 m-auto" id="profile_summary" name="profile_summary"
+            placeholder="What services do you offer">{{ current_user.profile.user_bio }}</textarea>
+    </div>
+  
+        <div class="form-groups">
+            {{ frmbio.submit (class="btn btn-primary float-left")}}
+        </div>
+        <a href="{{ url_for('me.myprofile')}}" class="visible"><button id="btn-edit-myprofile" type="button"
+                class="btn btn-info d-sm-block justify-content-center">Close
+        </button></a>
+
+</form>
+
+{% endblock page_body %}

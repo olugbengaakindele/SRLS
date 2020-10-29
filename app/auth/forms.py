@@ -26,12 +26,9 @@ def check_credentials(form, field):
 
 class RegForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
-    email = StringField("Email", validators=[DataRequired(), Email(
-        message="please enter a valid email format"), check_email])
+    email = StringField("Email", validators=[DataRequired(), Email(message="please enter a valid email format"), check_email])
     password = PasswordField("password", validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),
-                                                                     EqualTo('password',
-                                                                             message='Passwords must match')])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password',message='Passwords must match')])
     submit = SubmitField('Sign Up')
 
 

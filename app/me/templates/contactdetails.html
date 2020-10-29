@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{{ super() }}
+{% block page_body %}
+{{ super() }}
+<!-- second row with profile display-->
+<!--form Pasword chnage-->
+
+
+<form class="mt-50 w-75 mx-auto" method="post" action="">
+    {{ frmcontact.hidden_tag() }}
+
+    <div class="form-group">
+        {{ frmcontact.mobile_phone.label }}
+        {{ frmcontact.mobile_phone(placeholder ='1234567899',class ='w-100 m-auto', value =current_user.profile.user_mobile_phone)  }}
+        
+    </div>
+    <div class="form-group">
+        {{ frmcontact.work_phone.label }}
+        {{ frmcontact.work_phone(placeholder ='Twitter page',class ='w-100 m-auto', value =current_user.profile.user_work_phone)  }}
+        
+    </div>
+    <div class="form-group">
+        {{ frmcontact.postcode.label }}
+        {{ frmcontact.postcode (placeholder ='Facebook page',class ='w-100 m-auto', value =current_user.profile.user_postcode) }}
+        
+    </div>
+    <div class="form-group">
+        {{ frmcontact.city.label }}
+        {{ frmcontact.city (placeholder ='Facebook page',class ='w-100 m-auto', value =current_user.profile.user_city) }}
+        
+    </div>
+    <div class="form-group">
+        {{ frmcontact.country.label }}
+        {{ frmcontact.country (placeholder ='Facebook page',class ='w-100 m-auto', value =current_user.profile.user_country) }}
+        
+    </div>
+        <div class="form-groups">
+            {{ frmcontact.submit (class="btn btn-primary float-left")}}
+        </div>
+        <a href="{{ url_for('me.myprofile')}}" class="visible"><button id="btn-edit-myprofile" type="button"
+                class="btn btn-info d-sm-block justify-content-center">Close
+        </button></a>
+
+</form>
+
+{% endblock page_body %}

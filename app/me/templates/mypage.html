@@ -5,133 +5,6 @@
 {{ super() }}
 <!-- second row with profile display-->
 
-
-<!-- Forms to pop up-->
-<div class="row">
-    <div class="col-md-12">
-        <div class="modal fade" id="frmContact">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Contact Form</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="mt-50 w-75 mx-auto" method = "post" action="">
-                            {{ frmContact.hidden_tag() }} 
-                                 
-                            <div class="form-group">
-                                {{ frmContact.mobile_phone.label }}
-                                {{ frmContact.mobile_phone (placeholder ='Mobile Number',class ='w-100 m-auto', value = current_user.profile.user_mobile_phone) }}
-                            </div>
-                            <div class="form-group">
-                                {{ frmContact.work_phone.label }}
-                                {{ frmContact.work_phone (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_work_phone)}}
-                            </div>
-                            <div class="form-group">
-                                {{ frmContact.postcode.label }}
-                                {{ frmContact.postcode (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_postcode)}}
-                            </div>
-                              
-                            <div class="form-group">
-                                {{ frmContact.city.label }}
-                                {{ frmContact.city (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_city)}}
-                            </div>
-                            <div class="form-group">
-                                {{ frmContact.country.label }}
-                                {{ frmContact.country (placeholder ='Work Number',class ='w-100 m-auto', value = current_user.profile.user_country)}}
-                            </div> 
-                            <div class="modal-footer">
-                            <div class="form-groups">
-                                {{ frmContact.submit (class="btn btn-primary float-left")}}
-                            </div> 
-                            <input class="btn btn-danger w-25" data-dismiss= "modal" value="Close">  
-                            </form>  
-                    </div>
-                            
-                    </div>
-                    
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-<!--Form for Web Presence-->
-<!-- Forms to pop up-->
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="modal fade" id="frmweb">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Web Presence</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="mt-50 w-75 mx-auto" method = "post" action="">
-                            {{ frmweb.hidden_tag() }} 
-                                 
-                            <div class="form-group">
-                                {{ frmweb.url.label }}
-                                {{ frmweb.url (placeholder ='business website',class ='w-100 m-auto', value = current_user.profile.user_url) }}
-                            </div>
-                            <div class="form-group">
-                                {{ frmweb.twitter.label }}
-                                {{ frmweb.twitter (placeholder ='twitter link',class ='w-100 m-auto', value = current_user.profile.user_twitter)}}
-                            </div>
-                            <div class="form-group">
-                                {{ frmweb.facebook.label }}
-                                {{ frmweb.facebook (placeholder ='facebook page',class ='w-100 m-auto', value = current_user.profile.user_facebook)}}
-                            </div>
-                             <div class="modal-footer">
-                            <div class="form-groups">
-                                {{ frmweb.submit (class="btn btn-primary float-left")}}
-                            </div> 
-                            <input class="btn btn-danger w-25" data-dismiss= "modal" value="Close">    
-                        </div>
-                        </form>
-                    </div>
-                   
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="modal fade" id="frmAboutMe">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>About your services</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="mt-50 w-75 mx-auto" method = "post" action="">
-                            {{ frmbio.hidden_tag() }} 
-                                 
-                            <div class="form-group">
-                                {{ frmbio.profile_summary.label }}
-                                {{ frmbio.profile_summary (placeholder ='What services do you offer',class ='w-100 m-auto', value =  current_user.profile.user_bio) }}
-                            </div>
-                            <div class="modal-footer">
-                                <div class="form-groups">
-                                    {{ frmbio.submit (class="btn btn-primary float-left")}}
-                                </div> 
-                                <input class="btn btn-danger w-25" data-dismiss= "modal" value="Close">    
-                            </div> 
-                        </form>
-                       
-                    </div>
-                    
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- basic profile info column-->
 
 <div class="row">
@@ -142,17 +15,17 @@
                     src="{{url_for('static',filename= 'profile_pictures/')}}{{ profile_pic }}" alt="Responsive image" />
             </div>
 
-            <div class="card-footer justify-content-center bg-transparent border-0">
-                <a href="" id="edit-profile-picture" class="visible"><button id="btn-edit-myprofile" type="button"
-                        class="btn btn-info justify-content-center">edit profile picture
+            <div class="card-footer justify-content-center bg-transparent d-sm-blockborder-0">
+                <a href="{{url_for('me.editprofilepicture')  }}" id="edit-profile-picture" class="visible"><button id="btn-edit-myprofile" type="button"
+                        class="btn btn-info d-sm-block justify-content-center">edit
                     </button></a>
-                <!--<form action="" class="invisible" id="frm-edt-pp">
+                <form action="" class="invisible" id="frm-edt-pp">
                     {{ formpp.hidden_tag() }}
                     <div class="form-group">
                         {{ formpp.image.label  }}
                         {{ formpp.image }}
                     </div>
-                </form>-->
+                </form>
             </div>
 
         </div>
@@ -163,8 +36,7 @@
         <!--login details-->
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="mt-5">Login Details<span class="float-right in-line ml-2"><a href=""
-                    data-toggle="modal" data-target="#frmlogin"><i class="fas fa-pencil-alt"></i></a></span></h3>
+                <h3 class="mt-5">Login Details<span class="float-right in-line ml-2"><a href="{{ url_for('me.editlogindetails')}}"><i class="fas fa-user-edit"></i></a></span></h3>
             
             </div>
         </div>
@@ -185,8 +57,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="mt-5">Contact Details<span class="float-right in-line ml-2"><a href=""
-                            data-toggle="modal" data-target="#frmContact"><i class="fas fa-pencil-alt"></i></a></span>
+                <h3 class="mt-5">Contact Details<span class="float-right in-line ml-2"><a href="{{url_for('me.editcontactdetails')}}"><i class="fas fa-pencil-alt"></i></a></span>
                 </h3>
                
             </div>
@@ -243,8 +114,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="mt-5">Web Presence<span class="float-right in-line ml-2"><a href=""
-                    data-toggle="modal" data-target="#frmweb"><i class="fas fa-pencil-alt"></i></a></span></h3>
+                <h3 class="mt-5">Web Presence<span class="float-right in-line ml-2"><a href="{{url_for('me.editwebpresence')}}"><i class="fas fa-pencil-alt"></i></a></span></h3>
                 
             </div>
         </div>
@@ -279,8 +149,8 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <h3 class="mt-5">About me<span class="float-right in-line ml-2"><a href=""
-                    data-toggle="modal" data-target="#frmAboutMe"><i class="fas fa-pencil-alt"></i></a></span></h3>
+                <h3 class="mt-5">About me<span class="float-right in-line ml-2"><a href="{{ url_for('me.editprofilesummary')}}"
+                    data-toggle="" data-target=""><i class="fas fa-pencil-alt"></i></a></span></h3>
                 
             </div>
         </div>
@@ -297,7 +167,7 @@
         </div>
     </div>
 
-    
+   
 
 </div>
 

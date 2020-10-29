@@ -5,16 +5,20 @@ from wtforms import StringField, SubmitField, SelectField, PasswordField, Boolea
 from wtforms.validators import Email, DataRequired, EqualTo, ValidationError,InputRequired
 from wtforms.fields import html5 as h5fields
 from wtforms.widgets import html5 as h5widgets
-
+from app.auth.models import Users,Personal_Info,Services
+from app import bcrypt
+from flask_login import  current_user
 import os
 
 def num_validate(form, field):
     check = len(field.data)
     if check != 10:
         raise ValidationError('Number is greater than 10 digits')
-    '''elif isinstance(check, int):
-        raise ValidationError('Only digits allowed')'''
-
+    
+def check_current_password(form, field):
+    user= Users.query.filter_by(user_email = current_user.user_email).first()
+    if bcrypt.check_password_hash(user.user_password,field.data) == False:
+        raise ValidationError('Password does not match current password')
 
 class frmProfile(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
@@ -29,29 +33,18 @@ class frmProfile(FlaskForm):
     submit = SubmitField('Update')
 
 class frmContact(FlaskForm):
-    mobile_phone = StringField('Mobile Number', validators=[DataRequired()])
-    work_phone = StringField('Work Number', validators=[DataRequired()])
-    country = SelectField('Country', choices=[('1', 'Canada'), ('2', 'UK'), ('3', 'USA')])
-    postcode = StringField('Postcode', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
-    submit = SubmitField('Save')
-
-class frmTest(FlaskForm):
-    name=StringField('Name')
-    email=StringField("Email",validators=[DataRequired(), Email()])
     mobile_phone = StringField('Mobile Number')
     work_phone = StringField('Work Number')
     country = SelectField('Country', choices=[('1', 'Canada'), ('2', 'UK'), ('3', 'USA')])
-    postcode = StringField('Postcode', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
-    province = StringField('Province')
-    bio = TextAreaField('Bio') 
-    submit= SubmitField("Save")
+    postcode = StringField('Postcode')
+    city = StringField('City')
+    submit = SubmitField('Save')
 
+#form for web presence to be rendered on profile/editwebpresence
 class frmWeb(FlaskForm):
     twitter = StringField("Twitter")
-    url = StringField('Website',validators=[DataRequired()])
-    facebook = StringField('Facebook', validators=[DataRequired()])
+    url = StringField('Website')
+    facebook = StringField('Facebook')
     submit= SubmitField("Save")
 
 class frmAboutMe(FlaskForm):
@@ -61,9 +54,23 @@ class frmAboutMe(FlaskForm):
 class frmProfilePic(FlaskForm):
     image = FileField("Upload")
 
+class frmPassChange(FlaskForm):
+    current_password = PasswordField("Current Password*",validators=[DataRequired(),check_current_password])
+    new_password = PasswordField("New Password*", validators=[DataRequired(),EqualTo('confirm_password', message='Passwords must match')])
+    confirm_password = PasswordField('Confirm New Password*', validators=[DataRequired()])
+    submit= SubmitField("Save")
 
 
-def save_pic(file_name, category,pic_name):
+#class to save profile picture as user email
+def save_pp(file_name,user_email):
+    f_name, f_ext = os.path.splitext(file_name.filename)
+    img_name = user_email + f_ext
+    img_path = os.path.join(os.getcwd(),'app/static/profile_pictures', img_name)
+    file_name.save(img_path)
+    return img_name
+
+#class to save portfolio pictures
+def save_uploads(file_name, category,pic_name):
     f_name, f_ext = os.path.splitext(file_name.filename)
     img_name = category + "_"  + pic_name + "_" + f_name + "_" + f_ext
     img_path = os.path.join(os.getcwd(),'app/static/profile_pictures',img_name)
