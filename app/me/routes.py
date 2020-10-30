@@ -48,13 +48,20 @@ def myuploads():
 
     return render_template("uploads.html")
 
+#route to change password
 @me.route("/profile/editlogindetails", methods =["GET","POST"])
 @login_required
 def editlogindetails():
     form = frmPassChange()
-
+    
     if form.validate_on_submit():
+        user = Users.query.filter_by(id = current_user.id).first()
+        user.user_password = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
+        db.session.add(user)
+        db.session.commit()
+        flash("Password has been changed")
         return redirect(url_for('me.myprofile', title="My_Page"))
+
     return render_template("logindetails.html", frmChangePass= form)
 
 @me.route("/profile/editprofilesummary", methods =["GET","POST"])
@@ -143,7 +150,15 @@ def editprofilepicture():
     #wtf-form to upload  selectfiled to choose profile picture 
     formpp = frmProfilePic()
     if formpp.validate_on_submit():
-        pic_name = save_pp(form.file.data,form.category.data,form.picname.data)
+        pic_name = save_pp(formpp.image.data,current_user.user_email)
+        # get the user that is logged in so that the profilepicture name will be chnaged 
+        user= Users.query.filter_by(id = current_user.id).first()
+        if user:
+            user.user_pp_name = pic_name
+            db.session.add(user)
+            db.session.commit()
+        
+        return redirect(url_for('me.myprofile'))
 
     return render_template("profilepicture.html", title = "Edit_Profile_Picture", formpp= formpp)
 

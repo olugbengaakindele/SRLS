@@ -12,7 +12,7 @@
         <div class="card border-0">
             <div class="card-header bg-light" id="mypage-card-header">
                 <img class="img-fluid rounded-circle d-xs-none"
-                    src="{{url_for('static',filename= 'profile_pictures/')}}{{ profile_pic }}" alt="Responsive image" />
+                    src="{{url_for('static',filename= 'profile_pictures/')}}{{ current_user.user_pp_name }}" alt="Responsive image" />
             </div>
 
             <div class="card-footer justify-content-center bg-transparent d-sm-blockborder-0">

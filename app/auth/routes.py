@@ -4,7 +4,7 @@ from app.auth import auth
 import os
 from flask import render_template, url_for, redirect, request, flash
 from app.auth.forms import RegForm, LoginForm, DeleteForm, SearchForm
-from app.auth.models import Users,Personal_Info
+from app.auth.models import *
 from flask_login import login_user, logout_user, login_required
 from app import bcrypt, db
 from app import Message, mail, SECRET_KEY_2
@@ -50,6 +50,7 @@ def reg_user():
             link = url_for('auth.verify_email', token=token, _external=True)
             msg.body = 'Your link is {}'.format(link)
             mail.send(msg)
+
             return redirect(url_for('auth.home'))
 
     return render_template('reg.html', title = 'Register',form=form)

@@ -1,10 +1,11 @@
 #app/me/forms
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, PasswordField, BooleanField, TextField, TextAreaField, FileField
+from wtforms import StringField, SubmitField, SelectField, PasswordField, BooleanField, TextField, TextAreaField
 from wtforms.validators import Email, DataRequired, EqualTo, ValidationError,InputRequired
 from wtforms.fields import html5 as h5fields
 from wtforms.widgets import html5 as h5widgets
+from flask_wtf.file import FileField, FileRequired,FileAllowed
 from app.auth.models import Users,Personal_Info,Services
 from app import bcrypt
 from flask_login import  current_user
@@ -52,7 +53,8 @@ class frmAboutMe(FlaskForm):
     submit= SubmitField("Save")
 
 class frmProfilePic(FlaskForm):
-    image = FileField("Upload")
+    image = FileField("Upload",validators=[FileRequired(), FileAllowed(['jpg', 'png','svg'], 'Images only!')])
+    save = SubmitField("Save")
 
 class frmPassChange(FlaskForm):
     current_password = PasswordField("Current Password*",validators=[DataRequired(),check_current_password])
@@ -64,8 +66,8 @@ class frmPassChange(FlaskForm):
 #class to save profile picture as user email
 def save_pp(file_name,user_email):
     f_name, f_ext = os.path.splitext(file_name.filename)
-    img_name = user_email + f_ext
-    img_path = os.path.join(os.getcwd(),'app/static/profile_pictures', img_name)
+    img_name =  user_email + "_pp" + f_ext
+    img_path = os.path.join(os.getcwd(),'app/static/profile_pictures',img_name)
     file_name.save(img_path)
     return img_name
 
@@ -79,9 +81,9 @@ def save_uploads(file_name, category,pic_name):
 
 #check if profile picture already exisit so we can render in prilfe , if not render default
 def pp_check(filename):
-    img_path=os.path.join(os.getcwd(),'app/static/profile_pictures', (filename + "pp.jpg"))
+    img_path=os.path.join(os.getcwd(),'app/static/profile_pictures', (filename + "_pp.jpg"))
     if os.path.isfile(img_path ):
-        profile_pic = filename + "pp.jpg"
+        profile_pic = filename + "_pp.jpg"
     else:
         profile_pic = "default.jpg"
     

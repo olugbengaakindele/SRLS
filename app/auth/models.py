@@ -16,11 +16,12 @@ class Users(UserMixin, db.Model):
     user_name = db.Column(db.String(100),nullable = False)
     user_email = db.Column(db.String(100),nullable = False)
     user_password = db.Column(db.String(100),nullable = False)
+    user_pp_name  = db.Column(db.String(100), default= "default.jpg",nullable = False)
     email_confirmation_sent_on = db.Column(db.DateTime, nullable=True, default = datetime.utcnow())
     email_confirmed = db.Column(db.Boolean, nullable=True, default=False)
     email_confirmed_on = db.Column(db.DateTime, nullable=True,default = datetime.utcnow())
     profile = db.relationship('Personal_Info', backref = 'users', uselist = False)
-
+   
     def __init__(self, user_name, user_email,user_password):
         self.user_name =user_name 
         self.user_email = user_email
@@ -116,4 +117,17 @@ class Services(db.Model):
         service = cls(service = service, rate= rate, user_id = user_id)
         db.session.add(service)
         db.session.commit()
-        
+    
+'''class ProfilePictureName(db.Model):
+    __tablename__ = 'profilepicturename'
+
+    id = db.Column(db.Integer, primary_key = True)
+    user_pp_name  = db.Column(db.String(100), default= "default.jpg",nullable = False)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
+    
+    def __init__(self,user_pp_name,user_id):
+        self.user_pp_name = user_pp_name 
+        self.user_id = user_id
+    
+    def __repr__(self):
+        return "profile picture changed"'''

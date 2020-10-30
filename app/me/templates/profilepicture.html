@@ -9,13 +9,21 @@
 <div class="mt-5 row">
 
     <div class="col-6">
-        <form action="" method ='post'>
-    {{ formpp.hidden_tag() }}
-    <div class="form-group">
-        {{ formpp.image.label  }}
-        {{ formpp.image }}
-    </div>
-</form>
+        <form action="" method ='post' enctype="multipart/form-data">
+            {{ formpp.hidden_tag() }}
+            {% if formpp.image.errors %}
+                                    {% for error in formpp.image.errors %}
+                                        <h6 class="text-danger">{{ error }}</h6>
+                                    {% endfor %}
+                                {% endif %}  
+            <div class="form-group">
+                {{ formpp.image.label  }}
+                {{ formpp.image }}
+            </div>
+            <div class="form-group">
+               {{ formpp.save}}
+            </div>
+        </form>
     </div>
 
 </div>
