@@ -14,9 +14,7 @@
             <li class="nav-item m-3 ">
                 <a href="{{url_for('me.myprofile')}}" class="nav-link active bg-dark text-light">Profile</a>
             </li>
-            <li class="nav-item  m-3">
-                <a href="{{url_for('me.myaccount') }}" class="nav-link" >Account</a>
-            </li>
+           
             <li class="nav-item  m-3">
                 <a href="{{url_for('me.myservices') }}" class="nav-link">Services</a>
             </li>
@@ -26,6 +24,11 @@
             <li class="nav-item  m-3">
                 <a href="{{url_for('me.myuploads') }}" class="nav-link">Uploads</a>
             </li>
+
+            <li class="nav-item  m-3">
+                <a href="{{url_for('me.myuploads') }}" class="nav-link">Dashboard</a>
+            </li>
+            
         </ul>
         {% block section_content %}
 

@@ -16,12 +16,6 @@ def myprofile():
     profile_pic = pp_check(current_user.user_email)
     return render_template("mypage.html",title= "My_Page", formpp = formpp, profile_pic= profile_pic)
 
-@me.route("/account/account",methods=["GET","POST"])
-@login_required
-def myaccount():
-
-    return render_template("myaccount.html")
-
 @me.route("/account/services",methods=["GET","POST"])
 @login_required
 def myservices():
